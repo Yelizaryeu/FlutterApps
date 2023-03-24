@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_cart/bloc/product_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_cart/bloc/product_event.dart';
+import 'package:shopping_cart/pages/cart_page.dart';
 
 class ActionButtons extends StatelessWidget {
   @override
@@ -23,7 +24,9 @@ class ActionButtons extends StatelessWidget {
           width: 10.0,
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, 'cart');
+          },
           child: Icon(
             IconData(0xe59c, fontFamily: 'MaterialIcons'),
           ),

@@ -1,7 +1,11 @@
+// TODO: implement json_serializaable like here https://docs.flutter.dev/development/data-and-backend/json
+
 class Product {
   int id;
   String title;
   String? price;
+  String? category;
+  String? description;
   Rating? rating;
   String? image;
 
@@ -9,6 +13,8 @@ class Product {
     required this.id,
     required this.title,
     this.price,
+    this.category,
+    this.description,
     this.rating,
     this.image,
   });
@@ -19,6 +25,8 @@ class Product {
       id: json['id'],
       title: json['title'],
       price: json['price'].toString(),
+      category: json['category'],
+      description: json['description'],
       image: json['image'],
       rating:
           json['rating'] != null ? new Rating.fromJson(json['rating']) : null,
