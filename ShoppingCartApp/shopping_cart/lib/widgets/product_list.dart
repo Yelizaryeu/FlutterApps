@@ -41,15 +41,24 @@ class ProductList extends StatelessWidget {
               itemBuilder: (context, index) => Container(
                     color: index % 2 == 0 ? Colors.white : Colors.green[10],
                     child: Padding(
-                      padding: EdgeInsets.only(
-                          top: 4.0, bottom: 4.0, left: 2.0, right: 2.0),
+                      padding: EdgeInsets.only(top: 25.0, bottom: 25.0),
                       child: Container(
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.blueAccent)),
+                            border: Border.all(color: Colors.grey)),
                         child: ListTile(
+                          title: TextButton(
+                            onPressed: (() {
+                              Navigator.pushNamed(context, 'details',
+                                  arguments: state.loadedProduct[index]);
+                            }),
+                            child: Text(
+                              '${state.loadedProduct[index].title}',
+                              style: TextStyle(fontWeight: FontWeight.normal),
+                            ),
+                          ),
                           leading: SizedBox(
-                            width: 100.0,
-                            height: 100.0,
+                            width: 75.0,
+                            height: 75.0,
                             child:
                                 Image.network(state.loadedProduct[index].image),
                           ),
@@ -57,7 +66,7 @@ class ProductList extends StatelessWidget {
                   'ID: ${state.loadedProduct[index].id}',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),*/
-                          title: Column(
+                          subtitle: Column(
                             children: [
                               /* Text(
                               '${state.loadedProduct[index].category}',
@@ -66,18 +75,6 @@ class ProductList extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  TextButton(
-                                    onPressed: (() {
-                                      Navigator.pushNamed(context, 'details',
-                                          arguments:
-                                              state.loadedProduct[index]);
-                                    }),
-                                    child: Text(
-                                      '${state.loadedProduct[index].title}',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.normal),
-                                    ),
-                                  ),
                                   Row(
                                     children: [
                                       RatingBarIndicator(
@@ -122,6 +119,17 @@ class ProductList extends StatelessWidget {
                                       ),
                                     ],
                                   ),
+                                  ElevatedButton.icon(
+                                      style: ButtonStyle(
+                                          fixedSize: MaterialStatePropertyAll(
+                                              Size.fromWidth(450)),
+                                          backgroundColor:
+                                              MaterialStatePropertyAll(
+                                                  Colors.orangeAccent)),
+                                      onPressed: () {},
+                                      icon:
+                                          Icon(Icons.add_shopping_cart_rounded),
+                                      label: Text('into cart'))
                                 ],
                               )
                             ],
