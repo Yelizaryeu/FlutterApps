@@ -37,6 +37,7 @@ class PokemonListCubit extends Cubit<PokemonState> {
       page++;
       final pokemons = (state as PokemonLoading).oldPokemonsList;
       pokemons.addAll(character);
+
       print('List length: ${pokemons.length.toString()}');
       emit(PokemonLoaded(pokemons));
     });

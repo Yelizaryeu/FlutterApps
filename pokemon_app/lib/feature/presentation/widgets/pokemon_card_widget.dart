@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_app/feature/domain/entities/pokemon_entity.dart';
+import 'package:pokemon_app/feature/presentation/pages/pokemon_details.dart';
 import 'package:pokemon_app/feature/presentation/widgets/pokemon_cache_image_widget.dart';
 //import 'package:rick_and_morty/feature/presentation/pages/person_detail_screen.dart';
 
@@ -11,14 +12,14 @@ class PokemonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      /* onTap: () {
+      onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PersonDetailPage(pokemon: pokemon),
+            builder: (context) => PokemonDetailPage(pokemon: pokemon),
           ),
         );
-      }, */
+      },
       child: Container(
         decoration: BoxDecoration(
           color: Color(0xFF3C3E44),
@@ -38,6 +39,14 @@ class PokemonCard extends StatelessWidget {
                   ),
                   Text(
                     pokemon.name,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text(
+                    pokemon.id.toString(),
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,

@@ -32,6 +32,15 @@ class PokemonLoaded extends PokemonState {
   List<Object> get props => [pokemonsList];
 }
 
+/*class PokemonSelected extends PokemonState {
+  final PokemonEntity pokemon;
+
+  PokemonSelected(this.pokemon);
+
+  @override
+  List<Object> get props => [pokemon];
+}
+*/
 class PokemonError extends PokemonState {
   final String message;
 
