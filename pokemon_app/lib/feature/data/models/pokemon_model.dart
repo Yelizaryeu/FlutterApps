@@ -1,25 +1,24 @@
 import 'package:pokemon_app/feature/domain/entities/pokemon_entity.dart';
 
 class PokemonModel extends PokemonEntity {
-  PokemonModel({
-    required super.id,
-    required super.name,
-    //required super.url,
-    //required super.image,
-    // required super.type,
-    //required super.weight,
-    //required super.height
-  });
+  PokemonModel(
+      {required super.id,
+      required super.name,
+      //required super.url,
+      required super.sprite,
+      // required super.type,
+      required super.weight,
+      required super.height});
 
   factory PokemonModel.fromJson(Map<String, dynamic> json) {
     return PokemonModel(
       id: json['id'],
       name: json['name'],
       //url: json['url'],
-      //image: json['image'],
+      sprite: json['sprites']['front_default'],
       // type: json['types']['type']['name'],
-      //weight: json['weight'],
-      //height: json['height'],
+      weight: json['weight'],
+      height: json['height'],
     );
   }
 
@@ -28,10 +27,11 @@ class PokemonModel extends PokemonEntity {
       'id': id,
       'name': name,
       //'url': url,
-      //'image': image,
+      'sprites'
+          'front_default': sprite,
       //   'type': type,
-      //'weight': weight,
-      //'height': height,
+      'weight': weight,
+      'height': height,
     };
   }
 }

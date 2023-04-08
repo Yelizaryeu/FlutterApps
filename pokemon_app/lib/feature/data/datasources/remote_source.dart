@@ -20,7 +20,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<List<PokemonModel>> getAllPokemons(int page) async {
     final response = await http.get(Uri.parse(
-        'https://pokeapi.co/api/v2/pokemon?offset=${page * 20}&limit=20'));
+        'https://pokeapi.co/api/v2/pokemon?offset=${(page - 1) * 20}&limit=20'));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
       final List<dynamic> results = json['results'];
@@ -92,28 +92,20 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       final json = jsonDecode(response.body);
       final String name = json['name'];
       final int id = json['id'];
-      //final int height = json['height'];
-      //final int weight = json['weight'];
+      final int height = json['height'];
+      final int weight = json['weight'];
+      final String sprite = json['sprites']['front_default'];
       //final List<dynamic> types = json['types'];
       //final List<String> typeNames = types.map((t) => t['type']['name']).toList();
       return PokemonModel(
         name: name,
         id: id,
+        sprite: sprite,
+        weight: weight,
+        height: height,
       );
     } else {
       throw Exception('Failed to load Pokémon details');
-    }
-  }
-
-  Future<Iterable<PokemonModel>> getPokemonData(int name) async {
-    final response = await http
-        .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/' + '$name'));
-    if (response.statusCode == 200) {
-      final pokemonData = json.decode(response.body);
-      return (pokemonData as List)
-          .map((pokemon) => PokemonModel.fromJson(pokemon));
-    } else {
-      throw Exception('Failed to load Pokemon data');
     }
   }
 }

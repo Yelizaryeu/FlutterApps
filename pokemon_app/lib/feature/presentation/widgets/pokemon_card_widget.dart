@@ -27,6 +27,13 @@ class PokemonCard extends StatelessWidget {
         ),
         child: Row(
           children: [
+            Container(
+              child: PokemonCacheImage(
+                width: 166,
+                height: 166,
+                imageUrl: pokemon.sprite,
+              ),
+            ),
             const SizedBox(
               width: 16,
             ),

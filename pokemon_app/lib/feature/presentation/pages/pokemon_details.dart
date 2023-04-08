@@ -32,14 +32,25 @@ class PokemonDetailPage extends StatelessWidget {
             SizedBox(
               height: 12,
             ),
-            /*Text(
-              pokemon.url,
+            Text(
+              'height: ${pokemon.height.toString()}',
               style: TextStyle(
                 fontSize: 28,
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
               ),
-            ),*/
+            ),
+            Text(
+              'weight: ${pokemon.weight.toString()}',
+              style: TextStyle(
+                fontSize: 28,
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            SizedBox(
+              height: 12,
+            ),
           ],
         ),
       ),
