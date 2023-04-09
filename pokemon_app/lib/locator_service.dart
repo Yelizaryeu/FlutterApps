@@ -7,6 +7,7 @@ import 'package:pokemon_app/feature/data/repositories/pokemon_repository_impl.da
 import 'package:pokemon_app/feature/domain/repositories/pokemon_repository.dart';
 import 'package:pokemon_app/feature/domain/usecases/get_all_pokemons.dart';
 import 'package:pokemon_app/feature/presentation/bloc/pokemon_list_bloc.dart';
+import 'package:pokemon_app/feature/presentation/cubit/pokemon_list_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:http/http.dart' as http;
@@ -17,6 +18,9 @@ Future<void> init() async {
   // BLoC / Cubit
   sl.registerFactory(
     () => PokemonListCubit(getAllPokemons: sl()),
+  );
+  sl.registerFactory(
+    () => PokemonListBloc(getAllPokemons: sl()),
   );
 
   // UseCases

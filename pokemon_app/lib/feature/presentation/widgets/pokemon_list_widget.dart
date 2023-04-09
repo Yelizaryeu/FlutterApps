@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon_app/feature/domain/entities/pokemon_entity.dart';
 import 'package:pokemon_app/feature/presentation/bloc/pokemon_list_bloc.dart';
-import 'package:pokemon_app/feature/presentation/bloc/pokemon_list_state.dart';
+//import 'package:pokemon_app/feature/presentation/cubit/pokemon_list_bloc.dart';
+//import 'package:pokemon_app/feature/presentation/cubit/pokemon_list_state.dart';
 import 'package:pokemon_app/feature/presentation/widgets/pokemon_card_widget.dart';
 
 class PokemonsList extends StatelessWidget {
@@ -15,7 +16,7 @@ class PokemonsList extends StatelessWidget {
       if (scrollController.position.atEdge) {
         if (scrollController.position.pixels != 0) {
           //BlocProvider.of<PersonListCubit>(context).loadPerson();
-          context.read<PokemonListCubit>().loadPokemon();
+          context.read<PokemonListBloc>().add(LoadPokemonsEvent());
         }
       }
     });
@@ -25,19 +26,19 @@ class PokemonsList extends StatelessWidget {
   Widget build(BuildContext context) {
     setupScrollController(context);
 
-    return BlocBuilder<PokemonListCubit, PokemonState>(
+    return BlocBuilder<PokemonListBloc, PokemonState>(
         builder: (context, state) {
       List<PokemonEntity> pokemons = [];
       bool isLoading = false;
 
-      if (state is PokemonLoading && state.isFirstFetch) {
+      if (state is PokemonLoadingState && state.isFirstFetch) {
         return _loadingIndicator();
-      } else if (state is PokemonLoading) {
+      } else if (state is PokemonLoadingState) {
         pokemons = state.oldPokemonsList;
         isLoading = true;
-      } else if (state is PokemonLoaded) {
+      } else if (state is PokemonLoadedState) {
         pokemons = state.pokemonsList;
-      } else if (state is PokemonError) {
+      } else if (state is PokemonErrorState) {
         return Text(
           state.message,
           style: TextStyle(color: Colors.white, fontSize: 25),

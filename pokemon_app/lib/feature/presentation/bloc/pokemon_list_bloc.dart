@@ -1,45 +1,44 @@
-import 'package:dartz/dartz.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:pokemon_app/core/error/failure.dart';
 import 'package:pokemon_app/feature/domain/entities/pokemon_entity.dart';
 import 'package:pokemon_app/feature/domain/usecases/get_all_pokemons.dart';
-import 'package:pokemon_app/feature/presentation/bloc/pokemon_list_event.dart';
-import 'package:pokemon_app/feature/presentation/bloc/pokemon_list_state.dart';
+import 'package:pokemon_app/feature/presentation/cubit/pokemon_list_bloc.dart';
 
-const SERVER_FAILURE_MESSAGE = 'Server Failure';
-const CACHED_FAILURE_MESSAGE = 'Cache Failure';
+part 'pokemon_list_event.dart';
+part 'pokemon_list_state.dart';
 
-class PokemonListCubit extends Cubit<PokemonState> {
+class PokemonListBloc extends Bloc<PokemonEvent, PokemonState> {
   final GetAllPokemons getAllPokemons;
 
-  PokemonListCubit({required this.getAllPokemons}) : super(PokemonEmpty());
+  PokemonListBloc({required this.getAllPokemons}) : super(PokemonEmptyState()) {
+    int page = 1;
+    on<LoadPokemonsEvent>((event, emit) async {
+      if (state is PokemonLoadingState) return;
 
-  int page = 1;
+      final currentState = state;
 
-  void loadPokemon() async {
-    if (state is PokemonLoading) return;
+      var oldPokemon = <PokemonEntity>[];
+      if (currentState is PokemonLoadedState) {
+        oldPokemon = currentState.pokemonsList;
+      }
 
-    final currentState = state;
+      emit(PokemonLoadingState(oldPokemon, isFirstFetch: page == 1));
 
-    var oldPokemon = <PokemonEntity>[];
-    if (currentState is PokemonLoaded) {
-      oldPokemon = currentState.pokemonsList;
-    }
+      final failureOrPokemon =
+          await getAllPokemons(PagePokemonParams(page: page));
 
-    emit(PokemonLoading(oldPokemon, isFirstFetch: page == 1));
+      failureOrPokemon.fold(
+          (error) =>
+              emit(PokemonErrorState(message: _mapFailureToMessage(error))),
+          (character) {
+        page++;
+        final pokemons = (state as PokemonLoadingState).oldPokemonsList;
+        pokemons.addAll(character);
 
-    final failureOrPokemon =
-        await getAllPokemons(PagePokemonParams(page: page));
-
-    failureOrPokemon.fold(
-        (error) => emit(PokemonError(message: _mapFailureToMessage(error))),
-        (character) {
-      page++;
-      final pokemons = (state as PokemonLoading).oldPokemonsList;
-      pokemons.addAll(character);
-
-      print('List length: ${pokemons.length.toString()}');
-      emit(PokemonLoaded(pokemons));
+        print('List length: ${pokemons.length.toString()}');
+        emit(PokemonLoadedState(pokemons));
+      });
     });
   }
 

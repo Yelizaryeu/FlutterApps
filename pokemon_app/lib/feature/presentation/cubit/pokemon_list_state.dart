@@ -1,4 +1,5 @@
-part of 'pokemon_list_bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:pokemon_app/feature/domain/entities/pokemon_entity.dart';
 
 abstract class PokemonState extends Equatable {
   const PokemonState();
@@ -7,25 +8,25 @@ abstract class PokemonState extends Equatable {
   List<Object> get props => [];
 }
 
-class PokemonEmptyState extends PokemonState {
+class PokemonEmpty extends PokemonState {
   @override
   List<Object> get props => [];
 }
 
-class PokemonLoadingState extends PokemonState {
+class PokemonLoading extends PokemonState {
   final List<PokemonEntity> oldPokemonsList;
   final bool isFirstFetch;
 
-  PokemonLoadingState(this.oldPokemonsList, {this.isFirstFetch = false});
+  PokemonLoading(this.oldPokemonsList, {this.isFirstFetch = false});
 
   @override
   List<Object> get props => [oldPokemonsList];
 }
 
-class PokemonLoadedState extends PokemonState {
+class PokemonLoaded extends PokemonState {
   final List<PokemonEntity> pokemonsList;
 
-  PokemonLoadedState(this.pokemonsList);
+  PokemonLoaded(this.pokemonsList);
 
   @override
   List<Object> get props => [pokemonsList];
@@ -40,10 +41,10 @@ class PokemonLoadedState extends PokemonState {
   List<Object> get props => [pokemon];
 }
 */
-class PokemonErrorState extends PokemonState {
+class PokemonError extends PokemonState {
   final String message;
 
-  PokemonErrorState({required this.message});
+  PokemonError({required this.message});
 
   @override
   List<Object> get props => [message];
