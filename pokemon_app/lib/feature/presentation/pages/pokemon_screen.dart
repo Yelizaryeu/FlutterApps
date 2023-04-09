@@ -6,7 +6,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Characters'),
+        title: Text(
+          'Pokemons',
+          style: TextStyle(
+            fontFamily: 'Pokemon',
+            fontSize: 30.0,
+            letterSpacing: 4.0,
+          ),
+        ),
         centerTitle: true,
         actions: [],
       ),

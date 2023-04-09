@@ -5,7 +5,7 @@ class PokemonEntity extends Equatable {
   final String name;
   //final String url;
   final String sprite;
-  // final String type;
+  final List<String> types;
   final int weight;
   final int height;
 
@@ -14,7 +14,7 @@ class PokemonEntity extends Equatable {
     required this.name,
     //required this.url,
     required this.sprite,
-    //required this.type,
+    required this.types,
     required this.weight,
     required this.height,
   });

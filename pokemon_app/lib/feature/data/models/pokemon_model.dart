@@ -6,7 +6,7 @@ class PokemonModel extends PokemonEntity {
       required super.name,
       //required super.url,
       required super.sprite,
-      // required super.type,
+      required super.types,
       required super.weight,
       required super.height});
 
@@ -16,7 +16,7 @@ class PokemonModel extends PokemonEntity {
       name: json['name'],
       //url: json['url'],
       sprite: json['sprites']['front_default'],
-      // type: json['types']['type']['name'],
+      types: json['types']['type']['name'],
       weight: json['weight'],
       height: json['height'],
     );
@@ -29,7 +29,7 @@ class PokemonModel extends PokemonEntity {
       //'url': url,
       'sprites'
           'front_default': sprite,
-      //   'type': type,
+      //'types': types,
       'weight': weight,
       'height': height,
     };

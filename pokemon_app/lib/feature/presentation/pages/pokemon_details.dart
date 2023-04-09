@@ -12,46 +12,65 @@ class PokemonDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Character'),
+        title: Text('Details'),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 24,
-            ),
-            Text(
-              pokemon.name,
-              style: TextStyle(
-                fontSize: 28,
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                child: PokemonCacheImage(
+                  width: 275,
+                  height: 275,
+                  imageUrl: pokemon.sprite,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Text(
-              'height: ${pokemon.height.toString()}',
-              style: TextStyle(
-                fontSize: 28,
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
+              const SizedBox(
+                width: 16,
               ),
-            ),
-            Text(
-              'weight: ${pokemon.weight.toString()}',
-              style: TextStyle(
-                fontSize: 28,
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
+              Text(
+                pokemon.name,
+                style: TextStyle(
+                  fontSize: 28,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-          ],
+              SizedBox(
+                height: 12,
+              ),
+              Text(
+                'height: ${pokemon.height.toString()}',
+                style: TextStyle(
+                  fontSize: 28,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                'weight: ${pokemon.weight.toString()}',
+                style: TextStyle(
+                  fontSize: 28,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Text(
+                'types: ${pokemon.types.toString()}',
+                style: TextStyle(
+                  fontSize: 28,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

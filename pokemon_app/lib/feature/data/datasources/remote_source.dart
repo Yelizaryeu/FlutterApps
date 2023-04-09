@@ -95,11 +95,13 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       final int height = json['height'];
       final int weight = json['weight'];
       final String sprite = json['sprites']['front_default'];
-      //final List<dynamic> types = json['types'];
-      //final List<String> typeNames = types.map((t) => t['type']['name']).toList();
+      final List<dynamic> types = json['types'];
+      final List<String> typeNames =
+          types.map((type) => type['type']['name'] as String).toList();
       return PokemonModel(
         name: name,
         id: id,
+        types: typeNames,
         sprite: sprite,
         weight: weight,
         height: height,

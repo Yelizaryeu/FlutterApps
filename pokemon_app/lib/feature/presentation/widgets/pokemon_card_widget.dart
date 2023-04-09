@@ -29,8 +29,8 @@ class PokemonCard extends StatelessWidget {
           children: [
             Container(
               child: PokemonCacheImage(
-                width: 166,
-                height: 166,
+                width: 175,
+                height: 175,
                 imageUrl: pokemon.sprite,
               ),
             ),
@@ -47,15 +47,9 @@ class PokemonCard extends StatelessWidget {
                   Text(
                     pokemon.name,
                     style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  Text(
-                    pokemon.id.toString(),
-                    style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 25,
+                      letterSpacing: 4.0,
+                      fontFamily: 'Pokemon',
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
                     ),
