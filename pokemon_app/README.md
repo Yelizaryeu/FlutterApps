@@ -1,16 +1,16 @@
-# pokemon_app
+# PokeDex
 
-A new Flutter project.
+A simple application to view pokemons.
 
-## Getting Started
+## Functionality
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- display pokemon names from [PokeApi](https://pokeapi.co/api/v2/pokemon) in a List.
+- When a user clicks on cell, then the details screen is opened.
+- The Pokemon details page show the next information:
+	- The Pokemon's name
+	- A single image of the pokemon from the front
+	- The Pokemon's "types" e.g. grass
+	- The Pokemon's weight in kg
+	- The Pokemon's height in cm
+- handle all possible states of the app (offline, data not loading, errors, etc).
+- Data cached in the database to support offline mode.
