@@ -11,7 +11,13 @@ class PokemonDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Details'),
+        title: Text(
+          'Details',
+          style: TextStyle(
+              fontFamily: 'pokemon',
+              letterSpacing: 4.0,
+              fontWeight: FontWeight.w700),
+        ),
       ),
       body: Align(
         alignment: Alignment.topCenter,
@@ -20,6 +26,35 @@ class PokemonDetailPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              SizedBox(
+                height: 32,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    pokemon.name,
+                    style: TextStyle(
+                      fontSize: 38,
+                      letterSpacing: 3.0,
+                      fontFamily: 'pokemon',
+                      color: Colors.white,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  // SizedBox(
+                  //   width: 12,
+                  // ),
+                  // Text(
+                  //   '#${pokemon.id}',
+                  //   style: TextStyle(
+                  //     fontSize: 28,
+                  //     color: Colors.white,
+                  //     fontWeight: FontWeight.w900,
+                  //   ),
+                  // ),
+                ],
+              ),
               Container(
                 child: PokemonCacheImage(
                   width: 275,
@@ -30,42 +65,99 @@ class PokemonDetailPage extends StatelessWidget {
               const SizedBox(
                 width: 16,
               ),
-              Text(
-                pokemon.name,
-                style: TextStyle(
-                  fontSize: 28,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                ),
+              SizedBox(
+                height: 32,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 140,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(95, 80, 80, 80),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Height',
+                          style: TextStyle(
+                            fontSize: 28,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        Text(
+                          '${pokemon.height * 10} cm',
+                          style: TextStyle(
+                            fontSize: 28,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                    width: 140,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(95, 80, 80, 80),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Weight',
+                          style: TextStyle(
+                            fontSize: 28,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        Text(
+                          '${pokemon.weight * 0.1} kg',
+                          style: TextStyle(
+                            fontSize: 28,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
-                height: 12,
+                height: 20,
               ),
-              Text(
-                'height: ${pokemon.height.toString()}',
-                style: TextStyle(
-                  fontSize: 28,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
+              Container(
+                width: 300,
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(95, 80, 80, 80),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-              ),
-              Text(
-                'weight: ${pokemon.weight.toString()}',
-                style: TextStyle(
-                  fontSize: 28,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              SizedBox(
-                height: 12,
-              ),
-              Text(
-                'types: ${pokemon.types.toString()}',
-                style: TextStyle(
-                  fontSize: 28,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
+                child: Column(
+                  children: [
+                    Text(
+                      'Type',
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    Text(
+                      '${pokemon.types.join(', ')}',
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

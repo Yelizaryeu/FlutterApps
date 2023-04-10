@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pokemon_app/feature/domain/entities/pokemon_entity.dart';
 import 'package:pokemon_app/feature/presentation/pages/pokemon_details.dart';
 import 'package:pokemon_app/feature/presentation/widgets/pokemon_cache_image_widget.dart';
-//import 'package:rick_and_morty/feature/presentation/pages/person_detail_screen.dart';
 
 class PokemonCard extends StatelessWidget {
   final PokemonEntity pokemon;
@@ -22,7 +21,7 @@ class PokemonCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xFF3C3E44),
+          color: Color.fromARGB(255, 45, 45, 45),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(

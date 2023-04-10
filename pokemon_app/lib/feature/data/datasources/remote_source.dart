@@ -33,7 +33,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     }
   }
 
-  Future<PokemonModel> getPokemonDetails(String url) async {
+  static Future<PokemonModel> getPokemonDetails(String url) async {
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);

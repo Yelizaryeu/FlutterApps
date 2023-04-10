@@ -22,7 +22,6 @@ class LocalDataSourceImlp implements LocalDataSource {
         sharedPreferences.getStringList(chachedPokemonsList);
     print('got this list ${jsonPokemonsList}');
     if (jsonPokemonsList!.isNotEmpty) {
-      print('');
       return Future.value(jsonPokemonsList
           .map((pokemon) => PokemonModel.fromJson(json.decode(pokemon)))
           .toList());
@@ -36,12 +35,14 @@ class LocalDataSourceImlp implements LocalDataSource {
     final List<String> jsonPokemonsList =
         pokemons.map((pokemon) => json.encode(pokemon.toJson())).toList();
 
-    sharedPreferences.setStringList(
-        chachedPokemonsList,
-        sharedPreferences.getStringList(chachedPokemonsList)! +
-            (jsonPokemonsList));
-    print('pokemons to write Cache: ${jsonPokemonsList.length}');
-    print(jsonPokemonsList.toString());
+    final cachedPokemons = sharedPreferences.getStringList(chachedPokemonsList);
+    if (cachedPokemons != null) {
+      sharedPreferences.setStringList(
+          chachedPokemonsList, cachedPokemons + (jsonPokemonsList));
+    } else {
+      sharedPreferences.setStringList(chachedPokemonsList, jsonPokemonsList);
+    }
+
     return Future.value(jsonPokemonsList);
   }
 }

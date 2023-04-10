@@ -59,7 +59,10 @@ class PokemonsList extends StatelessWidget {
         },
         separatorBuilder: (context, index) {
           return Divider(
-            color: Colors.grey[400],
+            thickness: 1.0,
+            indent: 4.0,
+            endIndent: 4.0,
+            color: Color.fromARGB(95, 80, 80, 80),
           );
         },
         itemCount: pokemons.length + (isLoading ? 1 : 0),
