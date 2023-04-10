@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon_app/feature/presentation/bloc/pokemon_list_bloc.dart';
-import 'package:pokemon_app/feature/presentation/cubit/pokemon_list_bloc.dart';
+//import 'package:pokemon_app/feature/presentation/cubit/pokemon_list_bloc.dart';
 import 'package:pokemon_app/feature/presentation/pages/pokemon_screen.dart';
 import 'package:pokemon_app/locator_service.dart' as di;
 

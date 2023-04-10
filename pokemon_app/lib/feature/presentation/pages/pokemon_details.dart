@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_app/feature/domain/entities/pokemon_entity.dart';
 import 'package:pokemon_app/feature/presentation/widgets/pokemon_cache_image_widget.dart';
-import 'package:meta/meta.dart';
 
 class PokemonDetailPage extends StatelessWidget {
   final PokemonEntity pokemon;

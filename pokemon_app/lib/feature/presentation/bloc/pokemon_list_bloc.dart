@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:pokemon_app/core/error/failure.dart';
 import 'package:pokemon_app/feature/domain/entities/pokemon_entity.dart';
 import 'package:pokemon_app/feature/domain/usecases/get_all_pokemons.dart';

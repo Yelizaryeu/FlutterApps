@@ -7,7 +7,6 @@ import 'package:pokemon_app/feature/data/datasources/remote_source.dart';
 import 'package:pokemon_app/feature/data/models/pokemon_model.dart';
 import 'package:pokemon_app/feature/domain/entities/pokemon_entity.dart';
 import 'package:pokemon_app/feature/domain/repositories/pokemon_repository.dart';
-import 'package:pokemon_app/feature/domain/usecases/get_all_pokemons.dart';
 
 class PokemonRepositoryImpl implements PokemonRepository {
   final RemoteDataSource remoteDataSource;

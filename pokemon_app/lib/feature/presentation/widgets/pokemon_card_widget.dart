@@ -47,8 +47,8 @@ class PokemonCard extends StatelessWidget {
                   Text(
                     pokemon.name,
                     style: TextStyle(
-                      fontSize: 25,
-                      letterSpacing: 4.0,
+                      fontSize: 22,
+                      letterSpacing: 3.0,
                       fontFamily: 'Pokemon',
                       color: Colors.white,
                       fontWeight: FontWeight.w700,

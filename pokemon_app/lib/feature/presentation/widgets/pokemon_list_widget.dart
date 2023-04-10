@@ -10,7 +10,7 @@ import 'package:pokemon_app/feature/presentation/widgets/pokemon_card_widget.dar
 
 class PokemonsList extends StatelessWidget {
   final scrollController = ScrollController();
-  int page = 1;
+  final int page = 1;
   void setupScrollController(BuildContext context) {
     scrollController.addListener(() {
       if (scrollController.position.atEdge) {

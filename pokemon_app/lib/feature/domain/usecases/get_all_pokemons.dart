@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 import 'package:pokemon_app/core/error/failure.dart';
 import 'package:pokemon_app/core/usecases/usecase.dart';
 import 'package:pokemon_app/feature/domain/entities/pokemon_entity.dart';
@@ -16,11 +15,8 @@ class GetAllPokemons extends UseCase<List<PokemonEntity>, PagePokemonParams> {
   }
 }
 
-class PagePokemonParams extends Equatable {
+class PagePokemonParams {
   final int page;
 
   PagePokemonParams({required this.page});
-
-  @override
-  List<Object> get props => [page];
 }
