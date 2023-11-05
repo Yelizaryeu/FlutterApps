@@ -1,0 +1,30 @@
+name: details_view
+description: Chat View feature
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.18.2 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+    path: ../../core
+  domain:
+    path: ../../domain
+  data:
+    path: ../../data
+  core_ui:
+    path: ../../core_ui
+
+  cached_network_image: ^3.2.3
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+
+flutter:

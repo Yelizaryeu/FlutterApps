@@ -1,0 +1,31 @@
+name: navigation
+publish_to: none
+
+environment:
+  sdk: '>=3.0.1 <4.0.0'
+  flutter: ">=3.0.1"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  auto_route: ^5.0.4
+
+
+
+  core:
+    path: ../core
+  core_ui:
+    path: ../core_ui
+  domain:
+    path: ../domain
+  users_view:
+    path: ../features/users_view
+  details_view:
+    path: ../features/details_view
+
+
+dev_dependencies:
+  flutter_lints: ^2.0.3
+  auto_route_generator: ^5.0.2
+  build_runner: ^2.1.11
