@@ -141,7 +141,7 @@ class __$$PostEntityImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 5, adapterName: 'PostEntityAdapter')
+@HiveType(typeId: 5)
 class _$PostEntityImpl extends _PostEntity {
   _$PostEntityImpl(
       {@HiveField(1) required this.userId,

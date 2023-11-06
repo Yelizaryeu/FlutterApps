@@ -8,7 +8,7 @@ part 'post_entity.g.dart';
 class PostEntity extends HiveObject with _$PostEntity {
   PostEntity._();
 
-  @HiveType(typeId: 5, adapterName: 'PostEntityAdapter')
+  @HiveType(typeId: 5)
   factory PostEntity({
     @HiveField(1) required int userId,
     @HiveField(2) required int id,

@@ -15,7 +15,6 @@ class UserListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (users != []) {
-      print('users not empty');
       if (users.isNotEmpty) {
         return ListView.separated(
           itemBuilder: (context, index) {
@@ -33,25 +32,14 @@ class UserListWidget extends StatelessWidget {
           itemCount: users.length,
         );
       } else {
-        print('users empty');
         return const Center(
           child: CircularProgressIndicator(),
         );
       }
     } else {
-      print('users is []');
       return const Center(
         child: CircularProgressIndicator(),
       );
     }
-  }
-
-  Widget _loadingIndicator() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
   }
 }

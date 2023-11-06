@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:details_view/bloc/details_view/bloc.dart';
+import 'package:details_view/src/ui/widgets/user_detail_cache_image_widget.dart';
 import 'package:details_view/src/ui/widgets/user_posts_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -51,108 +52,73 @@ class _DetailsFormState extends State<DetailsViewForm> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        SizedBox(
-                          height: 32,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(state.user!.name, style: AppFonts.normal30.copyWith(color: Colors.black)),
-                          ],
-                        ),
-                        // UserDetailCacheImageWidget(
-                        //   width: 100,
-                        //   height: 100,
-                        //   imageUrl: state.user!.avatar ?? '',
-                        // ),
                         Padding(
-                          padding: const EdgeInsets.only(top: AppDimens.PADDING_30, bottom: AppDimens.PADDING_20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          padding: const EdgeInsets.symmetric(vertical: AppDimens.PADDING_30),
+                          child: UserDetailCacheImageWidget(
+                            width: 100,
+                            height: 100,
+                            imageUrl: state.user!.avatar ?? '',
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: AppDimens.PADDING_8),
+                          child: Text(
+                            state.user!.name,
+                            style: AppFonts.bold28.copyWith(color: AppColors.white),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: AppDimens.PADDING_8),
+                          child: Text(
+                            "Email: ${state.user!.email}",
+                            style: AppFonts.normal20.copyWith(color: AppColors.white),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: AppDimens.PADDING_8),
+                          child: Text(
+                            "Phone: ${state.user!.phone}",
+                            style: AppFonts.normal20.copyWith(color: AppColors.white),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: AppDimens.PADDING_8),
+                          child: Column(
                             children: [
-                              Container(
-                                width: 140,
-                                decoration: BoxDecoration(
-                                  color: AppColors.black12,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      'Height',
-                                      style: TextStyle(
-                                        fontSize: 28,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                    Text(
-                                      state.user!.phone,
-                                      style: TextStyle(
-                                        fontSize: 28,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              Text(
+                                "Address",
+                                style: AppFonts.normal30.copyWith(color: AppColors.white),
                               ),
-                              Container(
-                                width: 140,
-                                decoration: BoxDecoration(
-                                  color: AppColors.black12,
-                                  borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_8),
-                                ),
-                                child: Column(
-                                  children: [
-                                    const Text(
-                                      'Weight',
-                                      style: TextStyle(
-                                        fontSize: 28,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                    Text(
-                                      state.user!.email,
-                                      style: const TextStyle(
-                                        fontSize: 28,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              Text(
+                                "${state.user!.address["city"]}, ${state.user!.address["street"]}, ${state.user!.address["suite"]}",
+                                style: AppFonts.normal14.copyWith(color: AppColors.white),
+                              ),
+                              Text(
+                                "Zipcode: ${state.user!.address["zipcode"]}",
+                                style: AppFonts.normal14.copyWith(color: AppColors.white),
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          width: 300,
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(95, 80, 80, 80),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: AppDimens.PADDING_8),
                           child: Column(
                             children: [
                               Text(
-                                'Type',
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900,
-                                ),
+                                "Company",
+                                style: AppFonts.normal30.copyWith(color: AppColors.white),
                               ),
                               Text(
-                                state.user!.address.toString(),
-                                style: const TextStyle(
-                                  fontSize: 28,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900,
-                                ),
+                                "Name: ${state.user!.company["name"]}",
+                                style: AppFonts.normal14.copyWith(color: AppColors.white),
+                              ),
+                              Text(
+                                "Catch phrase: ${state.user!.company["catchPhrase"]}",
+                                style: AppFonts.normal14.copyWith(color: AppColors.white),
+                              ),
+                              Text(
+                                "Business services: ${state.user!.company["bs"]}",
+                                style: AppFonts.normal14.copyWith(color: AppColors.white),
                               ),
                             ],
                           ),
@@ -161,12 +127,15 @@ class _DetailsFormState extends State<DetailsViewForm> {
                     ),
                   ),
                 ),
-                const Text(
-                  "POSTS",
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w900,
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: AppDimens.PADDING_8),
+                  child: Text(
+                    "POSTS",
+                    style: TextStyle(
+                      fontSize: 28,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                 ),
                 Align(

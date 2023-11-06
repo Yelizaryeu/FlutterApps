@@ -50,7 +50,7 @@ class _RemoteProvider implements RemoteProvider {
   }
 
   @override
-  Future<List<UserEntity>> searchUser(String query) async {
+  Future<List<UserEntity>> getUserByName(String query) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -103,6 +103,35 @@ class _RemoteProvider implements RemoteProvider {
             ))));
     var value = _result.data!
         .map((dynamic i) => PostEntity.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<List<UserEntity>> getUserByEmail(String query) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<UserEntity>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/users/?email=${query}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map((dynamic i) => UserEntity.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }

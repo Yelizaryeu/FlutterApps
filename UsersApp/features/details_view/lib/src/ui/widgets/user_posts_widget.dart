@@ -37,13 +37,27 @@ class UserPostsWidget extends StatelessWidget {
           },
         );
       } else {
-        return const Center(
-          child: CircularProgressIndicator(),
+        return Container(
+          constraints: const BoxConstraints.expand(),
+          child: Text(
+            'Cannot load posts now, please try again later.',
+            style: AppFonts.normal14.copyWith(
+              color: AppColors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
         );
       }
     } else {
-      return const Center(
-        child: CircularProgressIndicator(),
+      return Container(
+        constraints: const BoxConstraints.expand(),
+        child: Text(
+          'Cannot load posts now, please try again later.',
+          style: AppFonts.normal14.copyWith(
+            color: AppColors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
       );
     }
   }

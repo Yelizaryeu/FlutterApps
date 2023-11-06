@@ -6,7 +6,7 @@ part of 'user_entity.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class UserEntityAdapter extends TypeAdapter<_$UserEntityImpl> {
+class UserEntityImplAdapter extends TypeAdapter<_$UserEntityImpl> {
   @override
   final int typeId = 5;
 
@@ -53,7 +53,7 @@ class UserEntityAdapter extends TypeAdapter<_$UserEntityImpl> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is UserEntityAdapter &&
+      other is UserEntityImplAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

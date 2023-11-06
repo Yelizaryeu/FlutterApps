@@ -6,7 +6,7 @@ part of 'post_entity.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class PostEntityAdapter extends TypeAdapter<_$PostEntityImpl> {
+class PostEntityImplAdapter extends TypeAdapter<_$PostEntityImpl> {
   @override
   final int typeId = 5;
 
@@ -44,7 +44,7 @@ class PostEntityAdapter extends TypeAdapter<_$PostEntityImpl> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is PostEntityAdapter &&
+      other is PostEntityImplAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

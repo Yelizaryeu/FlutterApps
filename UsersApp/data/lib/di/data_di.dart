@@ -13,68 +13,53 @@ final DataDI dataDI = DataDI();
 class DataDI {
   Future<void> initDependencies() async {
     await _initApi();
-    await _initUsers();
   }
 
   Future _initApi() async {
-    // appLocator.registerLazySingleton<RemoteProvider>(
-    //   () => RemoteProvider(client: appLocator()),
-    // );
-    //
-    // appLocator.registerLazySingleton<LocalProvider>(
-    //   () => LocalProvider(sharedPreferences: appLocator()),
-    // );
-    //
-    // appLocator.registerLazySingleton<NetworkInfo>(
-    //   () => NetworkInfoImp(appLocator()),
-    // );
-  }
+    final usersBox = await Hive.openBox<List>("users");
+    //final Box<List<UserEntity>> userBox = await Hive.openBox('users');
+    appLocator.registerLazySingleton(() => usersBox);
+    appLocator.registerLazySingleton(() => InternetConnectionChecker());
+    appLocator.registerLazySingleton(() => Dio());
 
-  Future _initUsers() async {
     appLocator.registerLazySingleton<UsersRepository>(
       () => UsersRepositoryImpl(
-        remoteProvider: appLocator(),
-        localProvider: appLocator(),
-        networkInfo: appLocator(),
+        remoteProvider: appLocator<RemoteProvider>(),
+        localProvider: appLocator<LocalProvider>(),
+        networkInfo: appLocator<NetworkInfo>(),
       ),
     );
 
     appLocator.registerLazySingleton<GetUsersUseCase>(
       () => GetUsersUseCase(
-        usersRepository: appLocator(),
+        usersRepository: appLocator<UsersRepository>(),
       ),
     );
 
     appLocator.registerLazySingleton<SearchUserUseCase>(
       () => SearchUserUseCase(
-        usersRepository: appLocator(),
+        usersRepository: appLocator<UsersRepository>(),
       ),
     );
 
     appLocator.registerLazySingleton<GetUserPostsUseCase>(
       () => GetUserPostsUseCase(
-        usersRepository: appLocator(),
+        usersRepository: appLocator<UsersRepository>(),
       ),
     );
 
     appLocator.registerLazySingleton<RemoteProvider>(
       () => RemoteProvider(
-        appLocator(),
+        appLocator<Dio>(),
       ),
     );
 
     appLocator.registerLazySingleton<LocalProvider>(
-      () => LocalProvider(usersBox: appLocator()),
+      () => LocalProvider(usersBox: appLocator<Box<List>>()),
     );
 
-    // Core
     appLocator.registerLazySingleton<NetworkInfo>(
-      () => NetworkInfoImp(appLocator()),
+      () => NetworkInfoImp(appLocator<InternetConnectionChecker>()),
     );
-
-    final Box<List<UserEntity>> userBox = await Hive.openBox('users');
-    appLocator.registerLazySingleton(() => userBox);
-    appLocator.registerLazySingleton(() => InternetConnectionChecker());
-    appLocator.registerLazySingleton(() => Dio());
   }
 }

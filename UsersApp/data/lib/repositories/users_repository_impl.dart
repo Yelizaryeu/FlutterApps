@@ -7,7 +7,6 @@ import 'package:domain/models/post/post_model.dart';
 import 'package:domain/models/user/user_model.dart';
 import 'package:domain/repositories/users_repository.dart';
 
-import '../entities/post/post_entity.dart';
 import '../mappers/mappers.dart';
 
 class UsersRepositoryImpl implements UsersRepository {
@@ -28,8 +27,10 @@ class UsersRepositoryImpl implements UsersRepository {
 
   @override
   Future<List<UserModel>> searchUser(String query) async {
-    return await _getUsers(() {
-      return remoteProvider.searchUser(query);
+    return await _getUsers(() async {
+      List<UserEntity> matchedUsers = await remoteProvider.getUserByName(query);
+      matchedUsers.addAll(await remoteProvider.getUserByEmail(query));
+      return matchedUsers;
     });
   }
 
@@ -37,11 +38,8 @@ class UsersRepositoryImpl implements UsersRepository {
     if (await networkInfo.isConnected) {
       try {
         final remoteUsers = await getUsers();
-        final List<UserModel> userModelList = [];
-        for (UserEntity userEntity in remoteUsers) {
-          userModelList.add(UserMapper.toModel(userEntity));
-        }
-        //localProvider.usersToCache(userModelList);
+        final userModelList = (remoteUsers.map((user) => UserMapper.toModel(user)).toList());
+        localProvider.usersToCache(userModelList);
         return userModelList;
       } on ServerException {
         throw ServerFailure();
@@ -58,7 +56,11 @@ class UsersRepositoryImpl implements UsersRepository {
 
   @override
   Future<List<PostModel>> getPosts(int id) async {
-    return await _getPosts(await remoteProvider.getPosts(id));
+    if (await networkInfo.isConnected) {
+      return await _getPosts(await remoteProvider.getPosts(id));
+    } else {
+      return [];
+    }
   }
 
   Future<List<PostModel>> _getPosts(List<PostEntity> posts) async {

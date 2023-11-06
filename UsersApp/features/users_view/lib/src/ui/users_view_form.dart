@@ -114,7 +114,7 @@ class _UsersFormState extends State<UsersViewForm> {
                 children: [
                   AppTextField(
                     controller: _searchController,
-                    hintText: 'Enter name',
+                    hintText: 'Enter name or email',
                   ),
                 ],
               ),
@@ -123,7 +123,7 @@ class _UsersFormState extends State<UsersViewForm> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
+                  style: ElevatedButton.styleFrom(backgroundColor: AppColors.darkBlack),
                   child: const Text("Cancel"),
                 ),
                 ElevatedButton(
@@ -131,7 +131,7 @@ class _UsersFormState extends State<UsersViewForm> {
                     BlocProvider.of<UsersListBloc>(contextWidget).add(SearchUserEvent(_searchController.text));
                     Navigator.of(contextWidget).pop();
                   },
-                  style: ElevatedButton.styleFrom(backgroundColor: Theme.of(contextWidget).primaryColor),
+                  style: ElevatedButton.styleFrom(backgroundColor: AppColors.darkBlack),
                   child: const Text("Search"),
                 ),
               ],

@@ -13,6 +13,17 @@ class AppFonts {
     fontWeight: FontWeight.bold,
     fontSize: 12,
   );
+
+  static TextStyle bold16 = const TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+  );
+
+  static TextStyle bold28 = const TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 28,
+  );
+
   static TextStyle robotoBold16 = const TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 16,
@@ -40,4 +51,7 @@ class AppFonts {
     fontSize: 26,
     fontWeight: FontWeight.bold,
   );
+
+  static TextStyle italicNormal14 =
+      const TextStyle(fontSize: 14, fontWeight: FontWeight.w400, fontStyle: FontStyle.italic);
 }

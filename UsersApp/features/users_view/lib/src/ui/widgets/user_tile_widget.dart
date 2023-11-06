@@ -2,8 +2,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/models/user/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
-
-import 'user_cache_image_widget.dart';
+import 'package:users_view/src/ui/widgets/user_cache_image_widget.dart';
 
 class UserTile extends StatelessWidget {
   final UserModel user;
@@ -25,18 +24,23 @@ class UserTile extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // CircleAvatar(
-            //   radius: 60,
-            //   backgroundColor: AppColors.grey,
-            //   child: ClipOval(
-            //     child:
-            //   ),
-            // ),
+            // user.avatar != null && user.avatar != ''
+            //?
             UserCacheImageWidget(
               width: 100,
               height: 100,
               imageUrl: user.avatar ?? '',
             ),
+            // :
+            // Container(
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(8),
+            //     image: const DecorationImage(
+            //       image: AssetImage(AppImages.defaultProfileImage),
+            //       fit: BoxFit.fill,
+            //     ),
+            //   ),
+            // ),
             const SizedBox(
               width: 16,
             ),

@@ -8,7 +8,7 @@ part 'user_entity.g.dart';
 class UserEntity extends HiveObject with _$UserEntity {
   UserEntity._();
 
-  @HiveType(typeId: 5, adapterName: 'UserEntityAdapter')
+  @HiveType(typeId: 5)
   factory UserEntity({
     @HiveField(1) required int id,
     @HiveField(2) required String name,

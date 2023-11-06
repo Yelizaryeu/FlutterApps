@@ -183,7 +183,7 @@ class __$$UserEntityImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 5, adapterName: 'UserEntityAdapter')
+@HiveType(typeId: 5)
 class _$UserEntityImpl extends _UserEntity {
   _$UserEntityImpl(
       {@HiveField(1) required this.id,

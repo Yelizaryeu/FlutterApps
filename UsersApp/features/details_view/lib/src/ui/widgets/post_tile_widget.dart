@@ -20,8 +20,8 @@ class PostTile extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: AppDimens.PADDING_12),
             child: Text(
-              '"${post.title}"',
-              style: AppFonts.normal14.copyWith(
+              post.title,
+              style: AppFonts.bold16.copyWith(
                 color: AppColors.white,
               ),
             ),
@@ -30,7 +30,7 @@ class PostTile extends StatelessWidget {
             padding: const EdgeInsets.only(top: AppDimens.PADDING_12),
             child: Text(
               '"${post.body}"',
-              style: AppFonts.normal14.copyWith(
+              style: AppFonts.italicNormal14.copyWith(
                 color: AppColors.white,
               ),
             ),

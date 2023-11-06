@@ -26,8 +26,6 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
     LoadDetailsEvent event,
     Emitter<DetailsState> emit,
   ) async {
-    print('new details event');
-
     final List<PostModel> posts = await _getUserPostsUseCase.execute(_user.id);
     emit(state.copyWith(
       user: _user,
