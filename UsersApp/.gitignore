@@ -32,8 +32,6 @@ migrate_working_dir/
 .pub/
 /build/
 gethtml.perl
-coverage/
-coveragehtml/
 
 # Symbolication related
 app.*.symbols

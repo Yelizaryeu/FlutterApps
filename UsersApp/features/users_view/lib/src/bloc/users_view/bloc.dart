@@ -34,7 +34,7 @@ class UsersListBloc extends Bloc<UsersListEvent, UsersListState> {
     ));
 
     print('search for this user: ${event.query}');
-    final List<UserModel> users = await _searchUserUseCase.execute(event.query);
+    final List<UserModel>? users = await _searchUserUseCase.execute(event.query);
 
     print('found this: $users');
     emit(state.copyWith(
@@ -49,7 +49,7 @@ class UsersListBloc extends Bloc<UsersListEvent, UsersListState> {
   ) async {
     print('new user event');
 
-    final List<UserModel> users = await _getUsersUseCase.execute(const NoParams());
+    final List<UserModel>? users = await _getUsersUseCase.execute(const NoParams());
     emit(state.copyWith(
       users: users,
       isLoading: false,

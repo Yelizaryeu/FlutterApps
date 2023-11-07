@@ -1,16 +1,14 @@
-import 'package:core/error/exception.dart';
-import 'package:core/error/failure.dart';
+import 'package:core/core.dart';
 import 'package:core/platform/network_info.dart';
 import 'package:data/data.dart';
-import 'package:data/providers/local_provider.dart';
-import 'package:domain/models/post/post_model.dart';
+import 'package:data/errors/error_handler.dart';
 import 'package:domain/models/user/user_model.dart';
 import 'package:domain/repositories/users_repository.dart';
 
 import '../mappers/mappers.dart';
 
 class UsersRepositoryImpl implements UsersRepository {
-  final RemoteProvider remoteProvider;
+  final RemoteUsersProvider remoteProvider;
   final LocalProvider localProvider;
   final NetworkInfo networkInfo;
 
@@ -21,63 +19,25 @@ class UsersRepositoryImpl implements UsersRepository {
   });
 
   @override
-  Future<List<UserModel>> getAllUsers() async {
-    return await _getUsers(remoteProvider.getUsers);
-  }
-
-  @override
-  Future<List<UserModel>> searchUser(String query) async {
-    return await _getUsers(() async {
-      List<UserEntity> matchedUsers = await remoteProvider.getUserByName(query);
-      matchedUsers.addAll(await remoteProvider.getUserByEmail(query));
-      return matchedUsers;
-    });
-  }
-
-  Future<List<UserModel>> _getUsers(Future<List<UserEntity>> Function() getUsers) async {
+  Future<List<UserModel>?> getAllUsers() async {
     if (await networkInfo.isConnected) {
-      try {
-        final remoteUsers = await getUsers();
-        final userModelList = (remoteUsers.map((user) => UserMapper.toModel(user)).toList());
-        localProvider.usersToCache(userModelList);
-        return userModelList;
-      } on ServerException {
-        throw ServerFailure();
-      }
+      final remoteUsers = await ErrorHandler().safeDioRequest(remoteProvider.getUsers());
+      localProvider.usersToCache(remoteUsers.map((user) => UserMapper.toModel(user)).toList());
+      return remoteUsers.map((user) => UserMapper.toModel(user)).toList();
     } else {
-      try {
-        final hiveLocalUsers = await localProvider.getUsersFromCache();
-        return hiveLocalUsers;
-      } on ServerException {
-        throw CacheFailure();
-      }
+      return localProvider.getUsersFromCache();
     }
   }
 
   @override
-  Future<List<PostModel>> getPosts(int id) async {
+  Future<List<UserModel>?> searchUser(String query) async {
     if (await networkInfo.isConnected) {
-      return await _getPosts(await remoteProvider.getPosts(id));
+      List<UserEntity> matchedUsers = await ErrorHandler().safeDioRequest(remoteProvider.getUserByName(query));
+      matchedUsers.addAll(await ErrorHandler().safeDioRequest(remoteProvider.getUserByEmail(query)));
+      localProvider.usersToCache(matchedUsers.map((user) => UserMapper.toModel(user)).toList());
+      return matchedUsers.map((user) => UserMapper.toModel(user)).toList();
     } else {
-      return [];
-    }
-  }
-
-  Future<List<PostModel>> _getPosts(List<PostEntity> posts) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final remotePosts = posts;
-        final List<PostModel> postModelList = [];
-        for (PostEntity postEntity in remotePosts) {
-          postModelList.add(PostMapper.toModel(postEntity));
-        }
-        //localProvider.usersToCache(userModelList);
-        return postModelList;
-      } on ServerException {
-        throw ServerFailure();
-      }
-    } else {
-      return [];
+      return localProvider.getUsersFromCache();
     }
   }
 }

@@ -1,12 +1,13 @@
 import 'package:core/di/app_di.dart';
 import 'package:core/platform/network_info.dart';
 import 'package:data/data.dart';
-import 'package:data/providers/local_provider.dart';
 import 'package:data/repositories/users_repository_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
-import 'package:hive/hive.dart';
+import 'package:domain/repositories/posts_repository.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+
+import '../repositories/posts_repository_impl.dart';
 
 final DataDI dataDI = DataDI();
 
@@ -16,15 +17,25 @@ class DataDI {
   }
 
   Future _initApi() async {
-    final usersBox = await Hive.openBox<List>("users");
-    //final Box<List<UserEntity>> userBox = await Hive.openBox('users');
-    appLocator.registerLazySingleton(() => usersBox);
-    appLocator.registerLazySingleton(() => InternetConnectionChecker());
-    appLocator.registerLazySingleton(() => Dio());
+    appLocator.registerLazySingleton<InternetConnectionChecker>(() => InternetConnectionChecker());
+
+    // Dio for users
+    appLocator.registerSingleton(Dio(), instanceName: "usersDio");
+
+    // Dio for posts
+    appLocator.registerSingleton(Dio(), instanceName: "postsDio");
 
     appLocator.registerLazySingleton<UsersRepository>(
       () => UsersRepositoryImpl(
-        remoteProvider: appLocator<RemoteProvider>(),
+        remoteProvider: appLocator<RemoteUsersProvider>(),
+        localProvider: appLocator<LocalProvider>(),
+        networkInfo: appLocator<NetworkInfo>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<PostsRepository>(
+      () => PostsRepositoryImpl(
+        remoteProvider: appLocator<RemotePostsProvider>(),
         localProvider: appLocator<LocalProvider>(),
         networkInfo: appLocator<NetworkInfo>(),
       ),
@@ -44,18 +55,24 @@ class DataDI {
 
     appLocator.registerLazySingleton<GetUserPostsUseCase>(
       () => GetUserPostsUseCase(
-        usersRepository: appLocator<UsersRepository>(),
+        postsRepository: appLocator<PostsRepository>(),
       ),
     );
 
-    appLocator.registerLazySingleton<RemoteProvider>(
-      () => RemoteProvider(
-        appLocator<Dio>(),
+    appLocator.registerLazySingleton<RemoteUsersProvider>(
+      () => RemoteUsersProvider(
+        appLocator.get(instanceName: "usersDio"),
+      ),
+    );
+
+    appLocator.registerLazySingleton<RemotePostsProvider>(
+      () => RemotePostsProvider(
+        appLocator.get(instanceName: "postsDio"),
       ),
     );
 
     appLocator.registerLazySingleton<LocalProvider>(
-      () => LocalProvider(usersBox: appLocator<Box<List>>()),
+      () => LocalProvider(),
     );
 
     appLocator.registerLazySingleton<NetworkInfo>(

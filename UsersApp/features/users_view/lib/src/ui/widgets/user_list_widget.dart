@@ -1,6 +1,6 @@
-import 'package:core_ui/core_ui.dart';
 import 'package:domain/models/user/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:users_view/src/ui/widgets/user_tile_divider_widget.dart';
 
 import 'user_tile_widget.dart';
 
@@ -18,16 +18,10 @@ class UserListWidget extends StatelessWidget {
       if (users.isNotEmpty) {
         return ListView.separated(
           itemBuilder: (context, index) {
-            int reverseIndex = users.length - index - 1;
             return UserTile(user: users[index]);
           },
           separatorBuilder: (context, index) {
-            return const Divider(
-              thickness: 1.0,
-              indent: 4.0,
-              endIndent: 4.0,
-              color: AppColors.orange,
-            );
+            return const UserTileDivider();
           },
           itemCount: users.length,
         );

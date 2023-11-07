@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:details_view/bloc/details_view/bloc.dart';
-import 'package:details_view/src/ui/widgets/user_detail_cache_image_widget.dart';
 import 'package:details_view/src/ui/widgets/user_posts_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -52,14 +51,6 @@ class _DetailsFormState extends State<DetailsViewForm> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: AppDimens.PADDING_30),
-                          child: UserDetailCacheImageWidget(
-                            width: 100,
-                            height: 100,
-                            imageUrl: state.user!.avatar ?? '',
-                          ),
-                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: AppDimens.PADDING_8),
                           child: Text(

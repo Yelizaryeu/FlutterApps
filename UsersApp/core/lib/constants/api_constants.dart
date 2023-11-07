@@ -4,6 +4,4 @@ class ApiConstants {
 
   ///Endpoint path
   static const String kUsersPath = '/users';
-
-  static const String hiveUsersBoxKey = 'users';
 }

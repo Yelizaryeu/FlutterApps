@@ -1,17 +1,16 @@
 import 'package:domain/models/post/post_model.dart';
+import 'package:domain/repositories/posts_repository.dart';
 import 'package:domain/usecases/usecase.dart';
 
-import '../repositories/users_repository.dart';
-
-class GetUserPostsUseCase extends FutureUseCase<int, List<PostModel>> {
-  final UsersRepository _usersRepository;
+class GetUserPostsUseCase extends FutureUseCase<int, List<PostModel>?> {
+  final PostsRepository _postsRepository;
 
   GetUserPostsUseCase({
-    required UsersRepository usersRepository,
-  }) : _usersRepository = usersRepository;
+    required PostsRepository postsRepository,
+  }) : _postsRepository = postsRepository;
 
   @override
-  Future<List<PostModel>> execute(input) {
-    return _usersRepository.getPosts(input);
+  Future<List<PostModel>?> execute(input) {
+    return _postsRepository.getPosts(input);
   }
 }

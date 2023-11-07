@@ -22,28 +22,3 @@ part 'app_router.gr.dart';
   ],
 )
 class AppRouter extends _$AppRouter {}
-
-// part 'app_router.gr.dart';
-//
-// @AutoRouterConfig()
-// class AppRouter extends _$AppRouter {
-//
-//   @override
-//   List<AutoRoute> get routes => [
-//     // AutoRoute(
-//     //   path: '/',
-//     //   page: HomeScreen,
-//     //   initial: true,
-//     // ),
-//     // AutoRoute(
-//     //   name: 'chatsViewRoute',
-//     //   page: ChatsViewScreen,
-//     //   path: 'chats_view/:id',
-//     // ),
-//     // AutoRoute(
-//     //   name: 'chatViewRoute',
-//     //   page: ChatViewScreen,
-//     //   path: 'chat_view',
-//     // ),
-//   ];
-// }

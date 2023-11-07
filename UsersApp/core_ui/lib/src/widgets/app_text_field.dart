@@ -22,7 +22,7 @@ class AppTextField extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: color ?? AppColors.grey,
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_4),
       ),
       height: 40,
       width: width,

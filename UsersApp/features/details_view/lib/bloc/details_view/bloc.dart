@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
-import 'package:domain/models/post/post_model.dart';
 import 'package:equatable/equatable.dart';
 
 part 'event.dart';
@@ -26,7 +25,7 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
     LoadDetailsEvent event,
     Emitter<DetailsState> emit,
   ) async {
-    final List<PostModel> posts = await _getUserPostsUseCase.execute(_user.id);
+    final List<PostModel>? posts = await _getUserPostsUseCase.execute(_user.id);
     emit(state.copyWith(
       user: _user,
       posts: posts,

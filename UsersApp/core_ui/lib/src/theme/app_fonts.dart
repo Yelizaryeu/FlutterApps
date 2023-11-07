@@ -10,17 +10,17 @@ class AppFonts {
     fontSize: 20,
   );
   static TextStyle bold12 = const TextStyle(
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w600,
     fontSize: 12,
   );
 
   static TextStyle bold16 = const TextStyle(
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w600,
     fontSize: 16,
   );
 
   static TextStyle bold28 = const TextStyle(
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w600,
     fontSize: 28,
   );
 
@@ -44,14 +44,17 @@ class AppFonts {
 
   static TextStyle bold22 = const TextStyle(
     fontSize: 22,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w600,
   );
 
   static TextStyle bold26 = const TextStyle(
     fontSize: 26,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w600,
   );
 
-  static TextStyle italicNormal14 =
-      const TextStyle(fontSize: 14, fontWeight: FontWeight.w400, fontStyle: FontStyle.italic);
+  static TextStyle italicNormal14 = const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.italic,
+  );
 }
