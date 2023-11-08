@@ -7,7 +7,6 @@ import 'package:domain/models/user/user_model.dart';
 import 'package:hive/hive.dart';
 
 class LocalProvider {
-  //final Box<List> usersBox;
   final Box<List> _usersBox = Hive.box('users');
   final Box<List> _postsBox = Hive.box('posts');
 
@@ -16,24 +15,6 @@ class LocalProvider {
         ErrorHandler().safeCacheRequest(_usersBox.get(HiveConstants.usersBoxKey, defaultValue: [])?.cast<UserEntity>());
     return cachedUsersList?.map((user) => UserMapper.toModel(user)).toList();
   }
-
-  // Future<List<UserModel>> getUsersFromCache() {
-  //   final jsonUsersList = _usersBox.get("users", defaultValue: [])?.cast<UserEntity>();
-  //   if (jsonUsersList!.isNotEmpty) {
-  //     return Future.value(jsonUsersList.map((user) => UserMapper.toModel(user)).toList());
-  //   } else {
-  //     throw CacheException();
-  //   }
-  // }
-
-  // Future<List<UserModel>> getUsersFromCache() {
-  //   final jsonUsersList = _usersBox.values.cast<UserEntity>();
-  //   if (jsonUsersList!.isNotEmpty) {
-  //     return Future.value(jsonUsersList.map((user) => UserMapper.toModel(user)).toList());
-  //   } else {
-  //     throw CacheException();
-  //   }
-  // }
 
   void usersToCache(List<UserModel> users) {
     final List<UserEntity> jsonUsersList = users.map((user) => UserMapper.toEntity(user)).toList();

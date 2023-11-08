@@ -7,10 +7,10 @@ class UserTileDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ListDivider(
-      height: 4.0,
-      thickness: 1.0,
-      indent: 4.0,
-      endIndent: 4.0,
+      height: AppDimens.HEIGHT_4,
+      thickness: AppDimens.THICKNESS_1,
+      indent: AppDimens.INDENT_4,
+      endIndent: AppDimens.END_INDENT_4,
       color: AppColors.orange,
     );
   }

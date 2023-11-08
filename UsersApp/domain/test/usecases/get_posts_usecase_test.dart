@@ -6,11 +6,11 @@ import '../helpers/test_helper.mocks.dart';
 
 void main() {
   late MockPostsRepository repo;
-  late GetUserPostsUseCase usecase;
+  late GetUserPostsUseCase useCase;
 
   setUp(() async {
     repo = MockPostsRepository();
-    usecase = GetUserPostsUseCase(postsRepository: repo);
+    useCase = GetUserPostsUseCase(postsRepository: repo);
   });
 
   PostModel testPostDetail = PostModel(
@@ -29,7 +29,7 @@ void main() {
       when(repo.getPosts(1)).thenAnswer((_) async => testPostList);
 
       // act
-      final result = await usecase.execute(1);
+      final result = await useCase.execute(1);
 
       // assert
       expect(result, equals(testPostList));

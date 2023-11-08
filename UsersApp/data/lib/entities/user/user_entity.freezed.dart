@@ -186,13 +186,13 @@ class __$$UserEntityImplCopyWithImpl<$Res>
 @HiveType(typeId: 5)
 class _$UserEntityImpl extends _UserEntity {
   _$UserEntityImpl(
-      {@HiveField(1) required this.id,
-      @HiveField(2) required this.name,
-      @HiveField(3) required this.avatar,
-      @HiveField(4) required this.email,
-      @HiveField(5) required this.phone,
-      @HiveField(6) required final Map<String, dynamic> address,
-      @HiveField(7) required final Map<String, dynamic> company})
+      {@HiveField(1) this.id = -1,
+      @HiveField(2) this.name = '',
+      @HiveField(3) this.avatar = '',
+      @HiveField(4) this.email = '',
+      @HiveField(5) this.phone = '',
+      @HiveField(6) final Map<String, dynamic> address = const {},
+      @HiveField(7) final Map<String, dynamic> company = const {}})
       : _address = address,
         _company = company,
         super._();
@@ -201,22 +201,28 @@ class _$UserEntityImpl extends _UserEntity {
       _$$UserEntityImplFromJson(json);
 
   @override
+  @JsonKey()
   @HiveField(1)
   final int id;
   @override
+  @JsonKey()
   @HiveField(2)
   final String name;
   @override
+  @JsonKey()
   @HiveField(3)
   final String? avatar;
   @override
+  @JsonKey()
   @HiveField(4)
   final String email;
   @override
+  @JsonKey()
   @HiveField(5)
   final String phone;
   final Map<String, dynamic> _address;
   @override
+  @JsonKey()
   @HiveField(6)
   Map<String, dynamic> get address {
     if (_address is EqualUnmodifiableMapView) return _address;
@@ -226,6 +232,7 @@ class _$UserEntityImpl extends _UserEntity {
 
   final Map<String, dynamic> _company;
   @override
+  @JsonKey()
   @HiveField(7)
   Map<String, dynamic> get company {
     if (_company is EqualUnmodifiableMapView) return _company;
@@ -280,14 +287,13 @@ class _$UserEntityImpl extends _UserEntity {
 
 abstract class _UserEntity extends UserEntity {
   factory _UserEntity(
-          {@HiveField(1) required final int id,
-          @HiveField(2) required final String name,
-          @HiveField(3) required final String? avatar,
-          @HiveField(4) required final String email,
-          @HiveField(5) required final String phone,
-          @HiveField(6) required final Map<String, dynamic> address,
-          @HiveField(7) required final Map<String, dynamic> company}) =
-      _$UserEntityImpl;
+      {@HiveField(1) final int id,
+      @HiveField(2) final String name,
+      @HiveField(3) final String? avatar,
+      @HiveField(4) final String email,
+      @HiveField(5) final String phone,
+      @HiveField(6) final Map<String, dynamic> address,
+      @HiveField(7) final Map<String, dynamic> company}) = _$UserEntityImpl;
   _UserEntity._() : super._();
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =

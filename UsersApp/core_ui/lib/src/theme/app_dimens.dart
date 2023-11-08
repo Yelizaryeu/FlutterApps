@@ -85,7 +85,41 @@ class AppDimens {
   static const double RADIUS_25 = 25.0;
   static const double RADIUS_30 = 30.0;
 
-  static const double heightAppBar = 55.0;
-  static const double heightChatTile = 58.0;
-  static const double heightNewChat = 325.0;
+  static const double LETTER_SPACING_1 = 1.0;
+  static const double LETTER_SPACING_2 = 2.0;
+  static const double LETTER_SPACING_4 = 4.0;
+  static const double LETTER_SPACING_5 = 5.0;
+
+  static const double HEIGHT_0 = 0;
+  static const double HEIGHT_1 = 1.0;
+  static const double HEIGHT_2 = 2.0;
+  static const double HEIGHT_4 = 4.0;
+  static const double HEIGHT_5 = 5.0;
+  static const double HEIGHT_10 = 10.0;
+  static const double HEIGHT_50 = 50.0;
+  static const double HEIGHT_100 = 100.0;
+  static const double HEIGHT_200 = 200.0;
+  static const double HEIGHT_300 = 300.0;
+  static const double HEIGHT_350 = 350.0;
+
+  static const double INDENT_0 = 0;
+  static const double INDENT_2 = 2.0;
+  static const double INDENT_4 = 4.0;
+  static const double INDENT_5 = 5.0;
+  static const double INDENT_10 = 10.0;
+
+  static const double END_INDENT_0 = 0;
+  static const double END_INDENT_2 = 2.0;
+  static const double END_INDENT_4 = 4.0;
+  static const double END_INDENT_5 = 5.0;
+  static const double END_INDENT_10 = 10.0;
+
+  static const double WIDTH_0 = 0;
+  static const double WIDTH_5 = 5.0;
+  static const double WIDTH_10 = 10.0;
+  static const double WIDTH_20 = 20.0;
+  static const double WIDTH_50 = 50.0;
+  static const double WIDTH_100 = 100.0;
+  static const double WIDTH_200 = 200.0;
+  static const double WIDTH_350 = 350.0;
 }

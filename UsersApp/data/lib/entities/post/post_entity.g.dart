@@ -55,10 +55,10 @@ class PostEntityImplAdapter extends TypeAdapter<_$PostEntityImpl> {
 
 _$PostEntityImpl _$$PostEntityImplFromJson(Map<String, dynamic> json) =>
     _$PostEntityImpl(
-      userId: json['userId'] as int,
-      id: json['id'] as int,
-      title: json['title'] as String,
-      body: json['body'] as String,
+      userId: json['userId'] as int? ?? -1,
+      id: json['id'] as int? ?? -1,
+      title: json['title'] as String? ?? '',
+      body: json['body'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$PostEntityImplToJson(_$PostEntityImpl instance) =>

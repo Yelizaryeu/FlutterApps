@@ -64,13 +64,13 @@ class UserEntityImplAdapter extends TypeAdapter<_$UserEntityImpl> {
 
 _$UserEntityImpl _$$UserEntityImplFromJson(Map<String, dynamic> json) =>
     _$UserEntityImpl(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      avatar: json['avatar'] as String?,
-      email: json['email'] as String,
-      phone: json['phone'] as String,
-      address: json['address'] as Map<String, dynamic>,
-      company: json['company'] as Map<String, dynamic>,
+      id: json['id'] as int? ?? -1,
+      name: json['name'] as String? ?? '',
+      avatar: json['avatar'] as String? ?? '',
+      email: json['email'] as String? ?? '',
+      phone: json['phone'] as String? ?? '',
+      address: json['address'] as Map<String, dynamic>? ?? const {},
+      company: json['company'] as Map<String, dynamic>? ?? const {},
     );
 
 Map<String, dynamic> _$$UserEntityImplToJson(_$UserEntityImpl instance) =>

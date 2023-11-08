@@ -1,13 +1,10 @@
 import 'package:core/di/app_di.dart';
 import 'package:core/platform/network_info.dart';
 import 'package:data/data.dart';
-import 'package:data/repositories/users_repository_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 import 'package:domain/repositories/posts_repository.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-
-import '../repositories/posts_repository_impl.dart';
 
 final DataDI dataDI = DataDI();
 
@@ -61,13 +58,13 @@ class DataDI {
 
     appLocator.registerLazySingleton<RemoteUsersProvider>(
       () => RemoteUsersProvider(
-        appLocator.get(instanceName: "usersDio"),
+        appLocator.get<Dio>(instanceName: "usersDio"),
       ),
     );
 
     appLocator.registerLazySingleton<RemotePostsProvider>(
       () => RemotePostsProvider(
-        appLocator.get(instanceName: "postsDio"),
+        appLocator.get<Dio>(instanceName: "postsDio"),
       ),
     );
 

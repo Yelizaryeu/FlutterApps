@@ -36,7 +36,7 @@ class UserTile extends StatelessWidget {
                       user.name,
                       style: AppFonts.bold22.copyWith(
                         color: AppColors.white,
-                        letterSpacing: 2.0,
+                        letterSpacing: AppDimens.LETTER_SPACING_2,
                       ),
                     ),
                   ),

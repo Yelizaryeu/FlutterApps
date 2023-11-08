@@ -27,16 +27,12 @@ class UsersListBloc extends Bloc<UsersListEvent, UsersListState> {
     SearchUserEvent event,
     Emitter<UsersListState> emit,
   ) async {
-    print('new search event');
-
     emit(state.copyWith(
       isLoading: true,
     ));
 
-    print('search for this user: ${event.query}');
     final List<UserModel>? users = await _searchUserUseCase.execute(event.query);
 
-    print('found this: $users');
     emit(state.copyWith(
       users: users,
       isLoading: false,

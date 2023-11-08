@@ -10,10 +10,10 @@ class PostEntity extends HiveObject with _$PostEntity {
 
   @HiveType(typeId: 4)
   factory PostEntity({
-    @HiveField(1) required int userId,
-    @HiveField(2) required int id,
-    @HiveField(3) required String title,
-    @HiveField(4) required String body,
+    @HiveField(1) @Default(-1) int userId,
+    @HiveField(2) @Default(-1) int id,
+    @HiveField(3) @Default('') String title,
+    @HiveField(4) @Default('') String body,
   }) = _PostEntity;
 
   factory PostEntity.fromJson(Map<String, dynamic> json) => _$PostEntityFromJson(json);

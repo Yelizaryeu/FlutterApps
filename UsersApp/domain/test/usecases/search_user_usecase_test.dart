@@ -6,11 +6,11 @@ import '../helpers/test_helper.mocks.dart';
 
 void main() {
   late MockUsersRepository repo;
-  late SearchUserUseCase usecase;
+  late SearchUserUseCase useCase;
 
   setUp(() async {
     repo = MockUsersRepository();
-    usecase = SearchUserUseCase(usersRepository: repo);
+    useCase = SearchUserUseCase(usersRepository: repo);
   });
 
   UserModel testUserDetail = UserModel(
@@ -40,7 +40,7 @@ void main() {
       when(repo.searchUser(leanneGraham)).thenAnswer((_) async => testUserList);
 
       // act
-      final result = await usecase.execute(leanneGraham);
+      final result = await useCase.execute(leanneGraham);
 
       // assert
       expect(result, equals(testUserList));

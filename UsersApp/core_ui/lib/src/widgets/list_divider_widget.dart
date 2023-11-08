@@ -21,9 +21,9 @@ class ListDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Divider(
       thickness: thickness,
-      height: height ?? 1.0,
-      indent: indent ?? 4.0,
-      endIndent: endIndent ?? 4.0,
+      height: height ?? AppDimens.HEIGHT_1,
+      indent: indent ?? AppDimens.INDENT_4,
+      endIndent: endIndent ?? AppDimens.END_INDENT_4,
       color: color ?? AppColors.black,
     );
   }

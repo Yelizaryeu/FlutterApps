@@ -144,25 +144,29 @@ class __$$PostEntityImplCopyWithImpl<$Res>
 @HiveType(typeId: 4)
 class _$PostEntityImpl extends _PostEntity {
   _$PostEntityImpl(
-      {@HiveField(1) required this.userId,
-      @HiveField(2) required this.id,
-      @HiveField(3) required this.title,
-      @HiveField(4) required this.body})
+      {@HiveField(1) this.userId = -1,
+      @HiveField(2) this.id = -1,
+      @HiveField(3) this.title = '',
+      @HiveField(4) this.body = ''})
       : super._();
 
   factory _$PostEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostEntityImplFromJson(json);
 
   @override
+  @JsonKey()
   @HiveField(1)
   final int userId;
   @override
+  @JsonKey()
   @HiveField(2)
   final int id;
   @override
+  @JsonKey()
   @HiveField(3)
   final String title;
   @override
+  @JsonKey()
   @HiveField(4)
   final String body;
 
@@ -202,10 +206,10 @@ class _$PostEntityImpl extends _PostEntity {
 
 abstract class _PostEntity extends PostEntity {
   factory _PostEntity(
-      {@HiveField(1) required final int userId,
-      @HiveField(2) required final int id,
-      @HiveField(3) required final String title,
-      @HiveField(4) required final String body}) = _$PostEntityImpl;
+      {@HiveField(1) final int userId,
+      @HiveField(2) final int id,
+      @HiveField(3) final String title,
+      @HiveField(4) final String body}) = _$PostEntityImpl;
   _PostEntity._() : super._();
 
   factory _PostEntity.fromJson(Map<String, dynamic> json) =

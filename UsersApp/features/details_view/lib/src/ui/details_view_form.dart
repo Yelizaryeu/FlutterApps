@@ -132,7 +132,7 @@ class _DetailsFormState extends State<DetailsViewForm> {
                 Align(
                   alignment: Alignment.center,
                   child: Container(
-                    constraints: const BoxConstraints(maxWidth: 350, maxHeight: 300),
+                    constraints: const BoxConstraints(maxWidth: AppDimens.WIDTH_350, maxHeight: AppDimens.HEIGHT_300),
                     child: state.posts != null
                         ? UserPostsWidget(posts: state.posts!)
                         : const Center(

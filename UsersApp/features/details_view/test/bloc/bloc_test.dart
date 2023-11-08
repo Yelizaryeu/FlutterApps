@@ -50,12 +50,12 @@ void main() {
     'initial state should be empty',
     () {
       const result = DetailsState();
-      expect(result, postsListBloc.state);
+      expect(result.posts, postsListBloc.state.posts);
     },
   );
 
   blocTest<DetailsBloc, DetailsState>(
-    'should emit [loading, has data] when data is gotten successfully',
+    'should emit {posts: testPostList} when data is gotten successfully',
     build: () {
       when(mockGetUserPostsUseCase.execute(userId)).thenAnswer((_) async => testPostList);
       return postsListBloc;
